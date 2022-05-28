@@ -14,7 +14,7 @@ jobs:
       
       - name: Test
         run: |
-          git stat
+          git status
           git log
           git log --pretty=format:"" --name-status -1 | grep '^A(jpg\|png\|gif\|ico)' | awk '{print $2}'
           git log --pretty=format:"" --name-status -1 | grep '^M(jpg\|png\|gif\|ico)' | awk '{print $2}'

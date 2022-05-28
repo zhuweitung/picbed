@@ -1,8 +1,8 @@
 name: compress
 
 on:
-  push:
-    branches: main
+#   push:
+#     branches: main
   workflow_dispatch:
 
 jobs:
@@ -14,10 +14,9 @@ jobs:
       
       - name: Test
         run: |
-          git log --pretty=format:"" --name-status -1
-          git log --pretty=format:"" --name-status -1 | grep '^A(jpg\|png\|gif\|ico)'
+          git stat
+          git log
           git log --pretty=format:"" --name-status -1 | grep '^A(jpg\|png\|gif\|ico)' | awk '{print $2}'
-          git log --pretty=format:"" --name-status -1 | grep '^M(jpg\|png\|gif\|ico)'
           git log --pretty=format:"" --name-status -1 | grep '^M(jpg\|png\|gif\|ico)' | awk '{print $2}'
       
 #         # 安装 node.js

@@ -12,21 +12,29 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-        # 安装 node.js
-      - name: Install node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-          check-latest: true
+      - name: Test
+        run: |
+          git log --pretty=format:"" --name-status -1
+          git log --pretty=format:"" --name-status -1 | grep '^A(jpg\|png\|gif\|ico)'
+          git log --pretty=format:"" --name-status -1 | grep '^A(jpg\|png\|gif\|ico)' | awk '{print $2}'
+          git log --pretty=format:"" --name-status -1 | grep '^M(jpg\|png\|gif\|ico)'
+          git log --pretty=format:"" --name-status -1 | grep '^M(jpg\|png\|gif\|ico)' | awk '{print $2}'
       
-      - name: Install super-tinypng
-        run: npm i super-tinypng -g
+#         # 安装 node.js
+#       - name: Install node.js
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: 14
+#           check-latest: true
+      
+#       - name: Install super-tinypng
+#         run: npm i super-tinypng -g
 
-      - name: Run compress
-        run: sudo bash tinypng.sh
+#       - name: Run compress
+#         run: sudo bash tinypng.sh
         
-      - name: Git auto commit
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Compress by tiny-png
-          add_options: '-A'
+#       - name: Git auto commit
+#         uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#           commit_message: Compress by tiny-png
+#           add_options: '-A'

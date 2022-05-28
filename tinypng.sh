@@ -8,7 +8,7 @@ if [[ ${#last_add_img_files[@]} > 0 ]]; then
     add_file_num=0
     for file in $last_add_img_files; do
         if [[ -f $file ]]; then
-            let add_file_num += 1
+            add_file_num=$((add_file_num+1))
             cp $file tinypng_tmp && echo -e "move ${file} to tinypng_tmp"
         fi
     done

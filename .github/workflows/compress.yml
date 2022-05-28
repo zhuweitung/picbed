@@ -1,0 +1,32 @@
+name: compress
+
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+        # 安装 node.js
+      - name: Install node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          check-latest: true
+      
+      - name: Install super-tinypng
+        run: npm i super-tinypng -g
+
+      - name: Run compress
+        run: sudo bash tinypng.sh
+        
+      - name: Git auto commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Compress by tiny-png
+          add_options: '-A'

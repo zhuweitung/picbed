@@ -16,7 +16,7 @@ jobs:
         run: |
           git status
           git log -1
-          git log --pretty=format:"" --name-status -n 1
+          git show --pretty="" --name-status HEAD
       
 #         # 安装 node.js
 #       - name: Install node.js
